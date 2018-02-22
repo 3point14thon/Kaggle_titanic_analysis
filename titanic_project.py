@@ -56,8 +56,9 @@ def train_test(x):
     x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.03,random_state=26)
     
     min_max = MinMaxScaler()
-    x_test = min_max.fit_transform(x_test) 
-    x_train = min_max.fit_transform(x_train)
+    min_max.fit(x_train) 
+    x_train = min_max.transform(x_train)
+    x_test = min_max.transform(x_test)
 
     model = KNeighborsClassifier(n_neighbors=4)
     model.fit(x_train, y_train)
